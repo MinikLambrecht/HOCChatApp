@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "105020753017",
+    "project_id": "hoc-chatapp-522b8",
+    "storage_bucket": "hoc-chatapp-522b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105020753017:android:6e50ce46a15acde39b40a8",
+        "android_client_info": {
+          "package_name": "com.hocchatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105020753017-5roh5j123omkjtjitvrkllmpg82653us.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hocchatapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "105020753017-r87ckhse9jmdo7m4dsfb4f1a10pboco2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN-rpulCnD5q4GoC0ek7xbmZ6iuaUSIXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105020753017-r87ckhse9jmdo7m4dsfb4f1a10pboco2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "105020753017-rsl14qqguka67mv2jlgij48oeah34rjq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pyrocorestudios.HOCChatApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
