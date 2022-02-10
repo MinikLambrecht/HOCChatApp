@@ -6,8 +6,19 @@ import { Button, List, ListItem, Text, useTheme } from '@ui-kitten/components';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-// Import styles.
+/**
+ * Type Imports
+ */
+import { ChatsScreenProps } from '../types';
+
+/**
+ * Style Imports.
+ */
 import * as Styling from '../styles';
+
+/**
+ * Model Imports.
+ */
 import { ChatModel } from '../models/Chats';
 
 let data = new Array(5).fill({
@@ -15,7 +26,7 @@ let data = new Array(5).fill({
   Description: 'Description ',
 });
 
-export default function Chats() {
+export default function Chats(Navigation: ChatsScreenProps) {
   const [refreshing, setRefreshing] = React.useState(false);
   
   const theme = useTheme();

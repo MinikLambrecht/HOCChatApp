@@ -1,9 +1,10 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { User } from "firebase/auth";
 
 export type RootStackParamList = {
     Login: undefined;
     Signup: undefined;
-    Chats: undefined;
+    Chats: User;
     ChatRooms: undefined;
 }
 

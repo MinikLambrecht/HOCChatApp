@@ -12,31 +12,42 @@ export const SignupStyles = StyleService.create({
         height: 120,
         width: 90,
         alignSelf: "center",
-        margin: 30
+        margin: 10
     },
     input: {
         height: 48,
-        borderRadius: 5,
+        width: '70%',
+        borderRadius: 7.5,
         overflow: 'hidden',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
+        marginTop: 5,
+        marginBottom: 5,
+        marginLeft: 62.5,
     },
     button: {
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 20,
+        marginLeft: 35,
+        marginRight: 35,
+        marginTop: 10,
+        borderRadius: 25,
         height: 48
     },
-    buttonTitle: {
-        fontSize: 18,
-        fontWeight: "bold"
+    SocialButtonFacebook: {
+        marginTop: 20,
+        marginLeft: 25,
+        marginRight: 25,
+        width: 150,
+        borderRadius: 0,
+    },
+    SocialButtonGoogle: {
+        marginTop: 20,
+        marginLeft: 25,
+        marginRight: 25,
+        width: 150,
+        borderRadius: 0,
     },
     footerView: {
         flex: 1,
         alignItems: "center",
-        marginTop: 20
+        marginTop: 10,
+        marginBottom: 15
     }
 });

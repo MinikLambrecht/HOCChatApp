@@ -8,4 +8,7 @@ export const AppStyles = StyleSheet.create({
   text: {
     marginHorizontal: 8,
   },
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  }
 });

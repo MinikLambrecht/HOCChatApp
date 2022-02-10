@@ -1,9 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
-import { getMessaging } from 'firebase/messaging';
 import { getDatabase } from 'firebase/database';
 
 // Your web app's Firebase configuration
@@ -24,10 +23,6 @@ export const app = initializeApp(firebaseConfig);
 
 // Initialize SDKs
 export const auth = getAuth(app);
-export const nonSocial = createUserWithEmailAndPassword();
-export const googleProvider = GoogleAuthProvider();
-export const facebookProvider = FacebookAuthProvider();
 
 export const firestone = getFirestore(app);
-export const messaging = getMessaging(app);
 export const database = getDatabase(app);
