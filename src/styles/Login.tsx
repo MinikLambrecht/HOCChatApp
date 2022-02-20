@@ -3,7 +3,7 @@ import { StyleService } from '@ui-kitten/components';
 export const LoginStyles = StyleService.create({
     container: {
         justifyContent: 'center',
-        backgroundColor: 'background-basic-color-1',
+        backgroundColor: 'background-basic-color-4',
         alignItems: 'center',
         flex: 1
     },
@@ -28,21 +28,32 @@ export const LoginStyles = StyleService.create({
         marginRight: 35,
         marginTop: 10,
         borderRadius: 25,
-        height: 48
+        height: 48,
+        borderColor: 'color-warning-500',
+        backgroundColor: 'background-basic-color-4'
+    },
+    SocialsContianer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     SocialButtonFacebook: {
         marginTop: 20,
         marginLeft: 25,
         marginRight: 25,
         width: 150,
-        borderRadius: 0,
+        borderRadius: 5,
+        borderColor: 'color-info-transparent-600',
+        backgroundColor: 'background-basic-color-4'
     },
     SocialButtonGoogle: {
         marginTop: 20,
         marginLeft: 25,
         marginRight: 25,
         width: 150,
-        borderRadius: 0,
+        borderRadius: 5,
+        borderColor: 'color-danger-transparent-600',
+        backgroundColor: 'background-basic-color-4'
     },
     footerView: {
         flex: 1,

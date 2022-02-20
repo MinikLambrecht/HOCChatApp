@@ -1,7 +1,7 @@
 /**
  * React imports.
  */
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 /**
  * UI & Component imports.
@@ -9,18 +9,13 @@ import React, { FC, useEffect, useState } from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 
-/**
- * Model imports.
- */
-
-import { ChatModel } from './src/models/Chats';
 
 /**
  * Nagivation imports.
  */
-import { NavigationContainer } from '@react-navigation/native'
-import AppStack from './src/components/StackNavigation';
+import { AuthProvider } from './src/navigation/AuthProvider';
 import SplashScreen from 'react-native-splash-screen'
+import Routes from './src/navigation/Routes';
 
 /**
  * Styling imports.
@@ -40,19 +35,6 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(true);
   const isDarkMode = useColorScheme() === 'dark';
 
-/**
- * Context Variables.
- */
-  const Chats: ChatModel[] = [{
-    RoomName: 'Default Room',
-    Description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit neque sunt harum minima, totam ab!'
-  }]
-
-  /**
-   * Context states.
-   */
-  const [ chats, setChats ] = useState(Chats);
-
   /**
    * Update theme based on user preferences.
    */
@@ -71,11 +53,11 @@ export default function App() {
   }
 
   return (
-    <ApplicationProvider {...eva} theme={CustomTheme}>
-      <NavigationContainer>
-        <AppStack />
-      </NavigationContainer>
-    </ApplicationProvider>
+     <ApplicationProvider {...eva} theme={CustomTheme}>
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
+      </ApplicationProvider>
   );
 };
 

@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">HOCChatApp</string>
+    <string name="app_name">
+        HOCChatApp
+    </string>
+
+    <string name="facebook_app_id">
+        485465596309534
+    </string>
 </resources>

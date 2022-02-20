@@ -1,12 +1,12 @@
 /**
  * React Imports.
  */
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 /**
  * Component & UI Imports.
  */
-import { Alert, Image, ImageStyle, TouchableWithoutFeedback, View} from 'react-native';
+import { Image, ImageStyle, TouchableWithoutFeedback, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Divider from 'react-native-divider';
 import { Button, Text, Input } from '@ui-kitten/components';
@@ -31,25 +31,28 @@ import { LoginScreenProps } from '../types';
 /**
  * Authentication Imports.
  */
-import { auth } from '../firebase/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { AuthContext } from '../navigation/AuthProvider';
+
 
 /**
  * 
  * @param props Navigation Props
  * @returns Login Screen
  */
-export default function Login(props: LoginScreenProps) {
+export const Login: React.FC<LoginScreenProps> = (props) => {
   /**
    * State values for signup form.
    */
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const login = useContext(AuthContext)?.login;
+  const socialFacebook = useContext(AuthContext)?.socialsFacebookProvider;
+  const socialGoogle = useContext(AuthContext)?.socialsGoogleProvider;
+
   /**
    * State values for the password input.
    */
-  const [value, setValue] = React.useState('');
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 
   /**
@@ -77,47 +80,19 @@ export default function Login(props: LoginScreenProps) {
   );
 
   const onFooterLinkPress = () => {
-    props.navigation.navigate('Signup')
+    props.navigation.navigate('Signup');
+  }
+
+  const onSocialFacebookPress = () => {
+    socialFacebook()
+  }
+
+  const onSocialGooglePress = () => {
+    socialGoogle();
   }
 
   const onLoginPress = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-          // Signed In
-          const userObj = res.user;
-          
-          props.navigation.navigate('Chats', userObj);
-
-        })
-        .catch((error) => {
-          switch(error.code)
-          {
-            case 'auth/wrong-password':
-              Alert.alert('Wrong password', 'Wrong password, please try again or contact an administrator!');
-              break;
-
-            case 'auth/user-not-found':
-              Alert.alert('Wrong E-mail', 'Wrong E-mail, please try again or contact an administrator!');
-              break;
-
-            case 'auth/invalid-email':
-              Alert.alert('Invalid E-mail', 'The E-mail was formatted wrong, try again or contact an administrator!');
-              break;
-
-            case 'auth/too-many-requests':
-              Alert.alert('Too Many Requests!', 'This account has temporarily been disabled due to many failed login attempts. You can immediately restore it by resetting your passsword or try again later.')
-              break;
-
-            case 'auth/internal-error':
-              Alert.alert('Internal Error', 'An unexpected error occured while trying to process the request. Try again, or contact an administrator!')
-              break;
-
-            default:
-              Alert.alert(error.code, error.message);
-              break;
-          }
-        }
-      );
+    login(email, password);
   }
 
   return (
@@ -167,12 +142,20 @@ export default function Login(props: LoginScreenProps) {
               </Text>
           </Divider>
 
-          <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Button style={styles.SocialButtonGoogle} appearance='outline' status='danger'>
+          <View style={styles.SocialsContianer}>
+            <Button
+              style={styles.SocialButtonGoogle}
+              appearance='outline' status='danger'
+              onPress={() => onSocialGooglePress()}
+            >
               <SocialIcons name='google' />
             </Button>
 
-            <Button style={styles.SocialButtonFacebook} appearance='outline' status='info'>
+            <Button
+              style={styles.SocialButtonFacebook}
+              appearance='outline'
+              status='info' onPress={() => onSocialFacebookPress()}
+            >
               <SocialIcons name='facebook' />
             </Button>
           </View>

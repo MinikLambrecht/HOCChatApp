@@ -1,17 +1,17 @@
 // Import the dependencides needed for the entry point.
-import React, { useState } from 'react';
-import {AppRegistry, Text} from 'react-native';
+import React from 'react';
+import {AppRegistry, LogBox } from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 
-import ErrorHandler from './src/components/ErrorHandling';
 
 function NewApp() {
-    return (
-        <ErrorHandler>
-            <App />
-        </ErrorHandler>
-    )
+    return <App />
 }
 
 AppRegistry.registerComponent(appName, () => App);
+
+LogBox.ignoreLogs([
+    'Warning: Failed prop type: Invalid props.style key `tintColor` supplied to `Text`.',
+    ''
+]);
