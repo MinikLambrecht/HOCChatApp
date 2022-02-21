@@ -1,6 +1,18 @@
+/**
+ * Interface Imports.
+ */
 import { UserInfo } from '@firebase/auth';
+import { User } from 'react-native-gifted-chat';
+
+/**
+ * Native stack props.
+ */
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
+
+/**
+ * Default Navigation props.
+ */
 export type RootStackParamList = {
     Login: undefined;
     Signup: undefined;
@@ -11,6 +23,9 @@ export type RootStackParamList = {
     AddRoom: undefined;
 };
 
+/**
+ * Default context props for the auth provider.
+ */
 export type ContextProps = {
     user: UserInfo | null;
     setUser: React.Dispatch<React.SetStateAction<UserInfo | null>>;
@@ -21,6 +36,9 @@ export type ContextProps = {
     logout: () => void;
 }
 
+/**
+ * Chatroom definition.
+ */
 export type ChatRoom = {
     name: string;
     description: string;
@@ -30,6 +48,9 @@ export type ChatRoom = {
     };
 }
 
+/**
+ * Screen props per view.
+ */
 export type AddRoomScreenProps = NativeStackScreenProps<RootStackParamList, 'AddRoom'>;
 export type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 export type SignupScreenProps = NativeStackScreenProps<RootStackParamList, 'Signup'>;

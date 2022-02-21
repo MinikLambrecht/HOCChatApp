@@ -19,7 +19,7 @@ import {createUserWithEmailAndPassword,
         updateProfile,
         UserInfo} from 'firebase/auth';
 
-import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { auth } from "../firebase/firebase";
 
@@ -39,7 +39,9 @@ GoogleSignin.configure({
     webClientId: '105020753017-r87ckhse9jmdo7m4dsfb4f1a10pboco2.apps.googleusercontent.com'
 });
 
-
+/**
+ * Facebook login function.
+ */
 const socialsFacebookProvider = async () =>
 {
     try
@@ -100,6 +102,9 @@ const socialsFacebookProvider = async () =>
     }
 }
 
+/**
+ * Google login function.
+ */
 const socialsGoogleProvider = async () =>
 {
     try
@@ -140,6 +145,11 @@ const socialsGoogleProvider = async () =>
     }
 }
 
+/**
+ * Default Email & Password Login funciton.
+ * @param email string
+ * @param password string
+ */
 const login = async (email: string, password: string) =>
 {
     try
@@ -204,6 +214,12 @@ const login = async (email: string, password: string) =>
     }
 }
 
+/**
+ * Register a new user with email & password.
+ * @param email string
+ * @param password string
+ * @param displayName string
+ */
 const register = async (email: string, password: string, displayName: string) =>
 {
     try
@@ -293,6 +309,9 @@ const register = async (email: string, password: string, displayName: string) =>
     }
 }
 
+/**
+ * Logout the current user.
+ */
 const logout = async () =>
 {
     try

@@ -39,33 +39,21 @@ import { AuthContext } from '../navigation/AuthProvider';
  * @returns Signup Screen
  */
 export const Signup: React.FC<SignupScreenProps> = (props) => {
-  /**
-   * State values for signup form.
-   */
-    const [displayName, setDisplayName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  /**
-   * State values for the password input.
-   */
   const [primarySecureTextEntry, setPrimarySecureTextEntry] = React.useState(true);
   const [secondarySecureTextEntry, setSecondarySecureTextEntry] = React.useState(true);
   
-  /**
-   * Get the stylesheet for the current screen,
-   * and get the current theme for possible future 
-   * variable access.
-   */
+
   const styles = useStyleSheet(Styling.SignupStyles);
   const theme  = useTheme();
 
   const register = useContext(AuthContext)?.register;
 
-  /**
-   * Toggle functionality for the password input.
-   */
+  
   const togglePrimarySecureEntry = () => {
     setPrimarySecureTextEntry(!primarySecureTextEntry);
   };
@@ -73,6 +61,7 @@ export const Signup: React.FC<SignupScreenProps> = (props) => {
   const toggleSecondarySecureEntry = () => {
     setSecondarySecureTextEntry(!secondarySecureTextEntry);
   };
+
 
   /**
    * Render the show / hide password icon.
@@ -90,8 +79,8 @@ export const Signup: React.FC<SignupScreenProps> = (props) => {
   );
 
   /**
-   * 
-   * @returns New user object & navigates to Chat area.
+   * Register new user logic.
+   * @returns New user object..
    */
   const onRegisterPress = () => {
     if(password !== confirmPassword)

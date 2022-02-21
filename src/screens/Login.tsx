@@ -79,18 +79,22 @@ export const Login: React.FC<LoginScreenProps> = (props) => {
     </TouchableWithoutFeedback>
   );
 
+  // Link logic
   const onFooterLinkPress = () => {
     props.navigation.navigate('Signup');
   }
 
+  // Facebook loging logic.
   const onSocialFacebookPress = () => {
     socialFacebook()
   }
 
+  // Google login logic.
   const onSocialGooglePress = () => {
     socialGoogle();
   }
 
+  // Email & Password Login logic.
   const onLoginPress = () => {
     login(email, password);
   }

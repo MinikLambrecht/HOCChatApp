@@ -28,7 +28,6 @@ import { AddRoomScreenProps } from '../types';
  * Icon Imports.
  */
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import PushNotification, { Importance } from 'react-native-push-notification';
 
 
 /**
@@ -47,24 +46,25 @@ export const AddRoom: React.FC<AddRoomScreenProps> = (props) => {
      * Create a new Firestore collection to save threads
      */
     function handleButtonPress() {
-        if (roomName.length > 0) {
-        firestore()
-            .collection('THREADS')
-            .add({
-                name: roomName,
-                description: roomDescription,
-                latestMessage: {
-                    text: `You have joined the room ${roomName}.`,
-                    createdAt: new Date().getTime()
-                }
-            })
-            .then(docRef => {
-                docRef.collection('MESSAGES').add({
-                    text: `You have joined the room ${roomName}.`,
-                    createdAt: new Date().getTime(),
-                    system: true
-                });
-                props.navigation.navigate('Home');
+        if (roomName.length > 0)
+        {
+            firestore()
+                .collection('THREADS')
+                .add({
+                    name: roomName,
+                    description: roomDescription,
+                    latestMessage: {
+                        text: `You have joined the room ${roomName}.`,
+                        createdAt: new Date().getTime()
+                    }
+                })
+                .then(docRef => {
+                    docRef.collection('MESSAGES').add({
+                        text: `You have joined the room ${roomName}.`,
+                        createdAt: new Date().getTime(),
+                        system: true
+                    });
+                    props.navigation.navigate('Home');
             });
         }
     }

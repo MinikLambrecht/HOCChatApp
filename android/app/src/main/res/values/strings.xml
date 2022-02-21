@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">
-        HOCChatApp
-    </string>
-
     <string name="facebook_app_id">
         485465596309534
+    </string>
+    <string name="facebook_client_token">
+        c2a88ba4a8e9823a3b62b6a76e23ffd8
     </string>
 </resources>

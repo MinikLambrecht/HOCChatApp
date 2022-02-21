@@ -6,8 +6,8 @@ import React, { useState, useEffect } from 'react';
 /**
  * UI & Component imports.
  */
-import { TouchableOpacity, RefreshControl, View, Alert, StyleSheet } from 'react-native';
-import { Button, Divider, List, ListItem, Text, useStyleSheet, useTheme } from '@ui-kitten/components';
+import { TouchableOpacity } from 'react-native';
+import { List, ListItem, Text, useStyleSheet, useTheme } from '@ui-kitten/components';
 import Loading from '../components/Loading';
 
 /**

@@ -17,7 +17,7 @@ import {
 } from 'react-native-gifted-chat';
 import { ActivityIndicator, View } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
-import { Button, Input, Text, useStyleSheet } from '@ui-kitten/components';
+import { useStyleSheet } from '@ui-kitten/components';
 
 /**
  * Firebase Imports.
@@ -40,14 +40,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
  */
 import { ChatRoomsScreenProps } from '../types';
 
-import { ChatRoom } from '../types';
-
 export const Room:React.FC<ChatRoomsScreenProps> = (props) => {
     const styles = useStyleSheet(Styling.ChatroomStyle);
     const theme = useTheme();
 
     const [messages, setMessages] = useState<IMessage[]>([]);
-    const [isTyping, setIsTyping] = useState(false);
     const { thread } = props.route.params;
     const currentUser = useContext(AuthContext)?.user;
 
@@ -82,6 +79,7 @@ export const Room:React.FC<ChatRoomsScreenProps> = (props) => {
         );
     }
 
+    // Lsiten for new messagesuntil the component unmounts.
     useEffect(() => {
       const messagesListener = firestore()
         .collection('THREADS')
@@ -117,6 +115,7 @@ export const Room:React.FC<ChatRoomsScreenProps> = (props) => {
       return () => messagesListener();
     }, []);
 
+    // Render custom chat bubble.
     function renderBubble(props: any) {
       return (
         <Bubble
@@ -141,6 +140,7 @@ export const Room:React.FC<ChatRoomsScreenProps> = (props) => {
       );
     }
 
+    // Render custom loading.
     function renderLoading() {
       return (
         <View style={styles.loadingContainer}>
@@ -149,6 +149,7 @@ export const Room:React.FC<ChatRoomsScreenProps> = (props) => {
       );
     }
 
+    // Re-define the "scroll to the bottom" Button.
     function scrollToBottomComponent() {
       return (
         <View style={styles.bottomComponentContainer}>
@@ -157,6 +158,7 @@ export const Room:React.FC<ChatRoomsScreenProps> = (props) => {
       );
     }
 
+    // Render new system message format.
     function renderSystemMessage(props: any) {
       return (
         <SystemMessage
@@ -167,6 +169,7 @@ export const Room:React.FC<ChatRoomsScreenProps> = (props) => {
       );
     }
 
+    // Custom send button
     function renderSend(props: any) {
       return (
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -179,6 +182,7 @@ export const Room:React.FC<ChatRoomsScreenProps> = (props) => {
       );
     }
 
+    // Custom Text Input.
     function customtInputToolbar(props: any) {
       return (
         <InputToolbar
@@ -189,18 +193,12 @@ export const Room:React.FC<ChatRoomsScreenProps> = (props) => {
       );
     };
 
-
-
+    
     return (
       <GiftedChat
         messagesContainerStyle={styles.messageContainer}
         messages={messages}
         onSend={handleSend}
-        onInputTextChanged={() => {
-          console.log(`Is Typing: ${isTyping}`);
-          setIsTyping(!isTyping)
-          console.log(`Is Typing: ${isTyping}`);
-        }}
         user={{ _id: currentUser?.uid as string | number }}
         placeholder='Type message...'
         textInputProps={styles.composer}

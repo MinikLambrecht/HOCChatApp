@@ -1,7 +1,7 @@
 /**
  * React Imports.
  */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 
 /**
@@ -28,7 +28,8 @@ import { AuthContext } from './AuthProvider';
  * Type Imports.
  */
 import { HomeScreenProps } from '../types';
-import { useTheme, Button } from '@ui-kitten/components';
+import { useTheme } from '@ui-kitten/components';
+import { Alert, View } from 'react-native';
 
 import PushNotification from 'react-native-push-notification';
 
@@ -39,9 +40,7 @@ import PushNotification from 'react-native-push-notification';
 const ChatAppStack = createNativeStackNavigator();
 const ModalStack = createNativeStackNavigator();
 
-/**
- * All chat related screens.
- */
+
 /**
  * 
  * @param props Navigation Props.
@@ -50,6 +49,9 @@ const ModalStack = createNativeStackNavigator();
 const ChatApp: React.FC<HomeScreenProps> = (props) => {
   const logout = useContext(AuthContext)?.logout;
   const theme = useTheme();
+
+  const [subscribed, setSubscribed] = useState<any | undefined>(false);
+  
 
   return (
     <ChatAppStack.Navigator
@@ -94,6 +96,46 @@ const ChatApp: React.FC<HomeScreenProps> = (props) => {
         name='ChatRoom'
         component={Screens.Room}
         options={({ route }) => ({
+           headerRight: () => (
+             
+            <View style={{flexDirection:'row'}}>
+              <Icon
+                name={subscribed === true ? 'bell' : 'bell-off'}
+                size={28}
+                color={theme['color-basic-500']}
+                onPress={async () => {
+                  try
+                  {
+                    setSubscribed(!subscribed)
+                    const topic = 'test';
+
+                    // Todo: test it, after notifications are fully implemented.
+                    switch(subscribed)
+                    {
+                      case true:
+                        PushNotification.unsubscribeFromTopic(topic);
+                        console.log(`Unsubscribed to topic: ${topic}`);
+                      break;
+
+                      case false:
+                        PushNotification.subscribeToTopic('test');
+                        console.log(`Subscribed to topic: ${topic}`);
+                      break;
+                    }
+                  }
+                  catch(e)
+                  {
+                    Alert.alert(
+                      'Unexpected error',
+                      `And unexpected error has occured\n${e}`
+                    );
+                  }
+                  
+                }}
+              />
+            </View>
+
+          ),
           headerTitleAlign: 'center',
           title: route.params?.thread.name,
         })}
