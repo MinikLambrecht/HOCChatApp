@@ -67,5 +67,5 @@ Run the javascript server first with `npx react-native start` & then run the ap
 
 # Bugs & future fixes
 
-- [ ] The Textinput in the chat area has white text.
-- [ ] Google & Facebook does not work yet.
+- [x] The Textinput in the chat area has white text.
+- [x] Google & Facebook does not work yet.
